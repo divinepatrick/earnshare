@@ -41,7 +41,7 @@ const SignIn = () => {
         }
   
         dispatch(signInSuccess(data));
-        navigate("/profile");
+        navigate("/");
         
       } catch (error) {
         dispatch(signInFailure(error.message));
