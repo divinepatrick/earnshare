@@ -1,9 +1,7 @@
 import { set } from "mongoose";
-import React from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import OAuth from "./components/OAuth";
+import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
 
