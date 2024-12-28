@@ -63,6 +63,8 @@ ViteExpress.listen(app, 3000, () =>
 );
 
 
+//Routes
+
 app.use('/server/user', userRouter);
 app.use('/server/auth', authRouter);
 
