@@ -1,40 +1,84 @@
+import { set } from "mongoose";
 import React from 'react';
-import {  Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 
 const SignIn = () => {
-    return (
-        <div className="flex flex-col min-h-screen bg-gray-50">
-            <div className="p-6 max-w-lg w-full mx-auto flex-grow flex flex-col justify-center">
-                <form className="flex flex-col gap-6 bg-white p-8 shadow-lg rounded-lg">
-                    <h1 className="text-4xl text-center font-bold mb-4">Sign In</h1>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        className="border border-gray-300 p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        id="email"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="border border-gray-300 p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        id="password"
-                    />
-                    <button
-                        className="bg-blue-600 text-white py-4 rounded-md text-lg font-semibold hover:bg-blue-700 disabled:opacity-70"
-                    >
-                        Sign In
-                    </button>
-                </form>
 
-                <div className="flex justify-center gap-2 mt-6 text-sm">
-                    <p>Don't have an account?</p>
-                    <a href="/signup" className="text-blue-700 font-medium hover:underline">
-                        <Link to="/sign-up">
-                            Sign Up
-                        </Link>
-                    </a>
-                </div>
+    const [formData, setFormData] = useState({});  
+    const { loading, error } = useSelector((state) => state.user);
+    const navigate = useNavigate();
+    
+    const dispatch = useDispatch();
+  
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.id]: e.target.value });
+      console.log(formData);
+    };
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      try {
+        dispatch(signInStart());
+        const res = await fetch("/server/auth/signin", {  
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await res.json();
+        console.log(data);
+  
+        if (data.success == false) {
+          dispatch(signInFailure(data.message));
+          return;
+        }
+  
+        dispatch(signInSuccess(data));
+        navigate("/profile");
+        
+      } catch (error) {
+        dispatch(signInFailure(error.message));
+      }
+  
+    };
+
+
+    return (
+        <div className="w-full p-3 max-w-lg mx-auto">
+            <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-8 h-full">
+                <input
+                    type="email"
+                    placeholder="Email"
+                    className="border p-3 rounded-lg my-3"
+                    id="email"
+                    onChange={handleChange}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    className="border p-3 rounded-lg my-3"
+                    id="password"
+                    onChange={handleChange}
+                />
+                <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95">
+                    {loading ? "Loading..." : "Sign In"}
+                </button>
+            </form>
+
+            <div className="flex gap-2 mt-5">
+                <p>Dont have an account?</p>
+                <Link to={"/sign-up"}>
+                    <span className="text-blue-700 hover">Sign Up</span>
+                </Link>
             </div>
+            {error && <p className="text-red-500 m">{error}</p>}
         </div>
     );
 };
