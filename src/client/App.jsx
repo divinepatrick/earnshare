@@ -8,6 +8,9 @@ import SignIn from './pages/SignIn';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
+import Dashboard from './pages/Dashboard';
+import AItools from './pages/AItools';
+import Pricing from './pages/Pricing';
 
 
 const App = () => {
@@ -19,7 +22,10 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route element={<PrivateRoute />} >
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/aitools" element={<AItools />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>

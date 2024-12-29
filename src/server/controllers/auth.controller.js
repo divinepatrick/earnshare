@@ -6,6 +6,22 @@ import { errorHandler } from "../utils/error.js";
 // Signup function
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
+
+  // Check if username is provided
+  if (!username) {
+    return res.status(400).json({ success: false, message: "Username is required" });
+  }
+
+  // Check if email is provided
+  if (!email) {
+    return res.status(400).json({ success: false, message: "Email is required" });
+  }
+
+  // Check if password is provided
+  if (!password) {
+    return res.status(400).json({ success: false, message: "Password is required" });
+  }
+
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({ username, email, password: hashedPassword });
   try {
@@ -20,9 +36,21 @@ export const signup = async (req, res, next) => {
   }
 };
 
+
 // Signin function
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
+
+  // Check if email is provided
+  if (!email) {
+    return res.status(400).json({ success: false, message: "Email is required" });
+  }
+
+  // Check if password is provided
+  if (!password) {
+    return res.status(400).json({ success: false, message: "Password is required" });
+  }
+
   try {
     const validUser = await User.findOne({ email });
     if (!validUser) return next(errorHandler(400, "User not found"));
