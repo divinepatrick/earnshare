@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './pages/Dashboard';
 import AItools from './pages/AItools';
 import Pricing from './pages/Pricing';
+import Creativegenerator from './pages/Creativegenerator';
 
 
 const App = () => {
@@ -24,9 +25,10 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route element={<PrivateRoute />} >
+          <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/aitools" element={<AItools />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="creativegenerator" element={<Creativegenerator />} />
         </Route>
       </Routes>
       <Footer />

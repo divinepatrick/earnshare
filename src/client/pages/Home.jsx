@@ -18,8 +18,8 @@ const Home = () => {
     };
 
     return (
-        <main className="container mx-auto px-4 py-8">
-            <section className="my-16 text-center relative" id="home">
+        <main className="container mx-auto px-4 py-auto">
+            <section className="my-10 text-center relative" id="home">
                 <Swiper
                     spaceBetween={30}
                     slidesPerView={1}
@@ -79,7 +79,7 @@ const Home = () => {
                 </Swiper>
             </section>
 
-            <section className="my-16 relative" id="products">
+            <section className="my-10 relative" id="products">
                 <div className="relative z-10 text-center">
                     <h1 className="text-3xl sm:text-4xl font-bold mb-8">
                         Our AI-Powered Marketing Solutions
@@ -131,39 +131,44 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="my-16 text-center relative" id="search">
-                <div className="relative z-10 max-w-2xl mx-auto">
-                    <h1 className="text-3xl sm:text-4xl font-bold mb-4">
+            <section className="my-10 text-center mx-auto relative" id="search">
+                <div className="relative z-10 max-w-4xl mx-auto">
+                    <h1 className="text-4xl sm:text-5xl font-bold mb-6">
                         Find the Best Affiliate Marketing Platforms
                     </h1>
-                    <p className="text-sm sm:text-lg mb-8">
+                    <p className="text-3xl sm:text-xl mb-10">
                         Get personalized recommendations for the best and highest paid affiliate marketing platforms based on your niche and performance metrics.
                     </p>
                     <form
                         id="chat-form"
-                        className="flex flex-col sm:flex-row items-center justify-center"
+                        className="flex flex-col sm:flex-row items-center justify-center mx-auto w-full sm:w-3/4 lg:w-2/3 px-10 py-6"
                         onSubmit={handleSubmit}
                     >
                         <input
                             id="user-input"
                             type="search"
                             placeholder="Ask me anything..."
-                            className="w-full sm:w-2/3 py-2 px-4 border rounded mb-4 sm:mb-0 sm:mr-4"
+                            className="w-full sm:w-2/3 py-3 px-5 border rounded mb-4 sm:mb-0 sm:mr-4"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                         />
                         <button
                             type="submit"
-                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-5 rounded"
                         >
                             Search
                         </button>
                     </form>
-                    {response && <div className="mt-4 bg-gray-100 p-4 rounded">{response}</div>}
+                    {response && (
+    <div className="mt-10 bg-white p-8 rounded-lg shadow-md w-full mx-auto">
+        <h2 className="text-3xl font-bold mb-6">Response</h2>
+        <pre className="whitespace-pre-wrap">{response}</pre>
+    </div>
+)}
                 </div>
             </section>
 
-            <section className="my-16 text-center" id="contact">
+            <section className="my-10 text-center" id="contact">
                 <div className="relative z-10 px-4 py-8 md:px-16 lg:px-32 md:py-12">
                     <h1 className="text-3xl sm:text-4xl font-bold mb-4">Get in Touch</h1>
                     <p className="text-sm sm:text-lg mb-8">
@@ -218,7 +223,7 @@ const Home = () => {
 
 
         </main>
-        
+
     );
 };
 
