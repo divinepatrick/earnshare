@@ -24,23 +24,23 @@ const Header = () => {
                     {currentUser ? (
                         <>
                             <Link to="/dashboard">
-                                <li className="text-xs sm:text-slate-700 hover:underline">Dashboard</li>
+                                <li className="text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">Dashboard</li>
                             </Link>
                             <Link to="/aitools">
-                                <li className="text-xs sm:text-slate-700 hover:underline">AI Tools</li>
+                                <li className="text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">AI Tools</li>
                             </Link>
                             
                         </>
                     ) : (
                         <>
                             <Link to="/">
-                                <li className="hidden sm:inline text-xs sm:text-slate-700 hover:underline">Home</li>
+                                <li className="hidden sm:inline text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">Home</li>
                             </Link>
                             <Link to="/pricing">
-                                <li className="hidden sm:inline text-xs sm:text-slate-700 hover:underline">Pricing</li>
+                                <li className="hidden sm:inline text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">Pricing</li>
                             </Link>
                             <Link to="/about">
-                                <li className="hidden sm:inline text-xs sm:text-slate-700 hover:underline">About</li>
+                                <li className="hidden sm:inline text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">About</li>
                             </Link>
                         </>
                     )}
@@ -52,7 +52,7 @@ const Header = () => {
                                 className="rounded-full h-7 w-7 object-cover"
                             />
                         ) : (
-                            <li className="text-xs sm:text-slate-700 hover:underline">Sign In</li>
+                            <li className="text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">Sign In</li>
                         )}
                     </Link>
                 </ul>
