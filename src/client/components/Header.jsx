@@ -29,7 +29,7 @@ const Header = () => {
                             <Link to="/aitools">
                                 <li className="text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">AI Tools</li>
                             </Link>
-                            
+
                         </>
                     ) : (
                         <>
