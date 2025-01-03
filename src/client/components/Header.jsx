@@ -6,65 +6,59 @@ const Header = () => {
 
     const { currentUser } = useSelector((state) => state.user);
 
+
     return (
-        <header className="bg-slate-200 shadow-md sticky top-0 z-50">
-            <div className="flex justify-between items-center max-w-6xl mx-auto p-4">
-                <Link to="/" className="flex items-center gap-2">
-                    <h1 className="font-extrabold text-xl sm:text-2xl">
+        <header className="bg-slate-200 shadow-md">
+            <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+                <Link to="/">
+                    <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
                         <span className="text-blue-700">EARNSHARE</span>
                         <span className="text-orange-500">AI</span>
                     </h1>
                 </Link>
-                <form className="bg-white p-2 rounded-lg flex items-center shadow-sm">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="bg-transparent focus:outline-none w-20 sm:w-48 text-gray-700 placeholder-gray-400"
-                    />
-                    <button type="submit" className="text-slate-600">
-                        <FaSearch />
-                    </button>
+                <form className="bg-slate-100 p-3 rounded-lg flex items-center">
+                    <input type="text" placeholder="search..." className="bg-transparent focus:outline-none w-16 sm:w-48" />
+                    <FaSearch className="text-slate-600" />
                 </form>
-                <nav>
-                    <ul className="flex items-center gap-4">
+                <ul className="flex gap-4">
+                    {currentUser ? (
+                        <>
+                            <Link to="/dashboard">
+                                <li className="text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">Dashboard</li>
+                            </Link>
+                            <Link to="/aitools">
+                                <li className="text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">AI Tools</li>
+                            </Link>
+
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/">
+                                <li className="hidden sm:inline text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">Home</li>
+                            </Link>
+                            <Link to="/pricing">
+                                <li className="hidden sm:inline text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">Pricing</li>
+                            </Link>
+                            <Link to="/about">
+                                <li className="hidden sm:inline text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">About</li>
+                            </Link>
+                        </>
+                    )}
+                    <Link to="/profile">
                         {currentUser ? (
-                            <>
-                                <Link to="/dashboard" className="text-sm sm:text-base text-gray-700 hover:underline">
-                                    Dashboard
-                                </Link>
-                                <Link to="/aitools" className="text-sm sm:text-base text-gray-700 hover:underline">
-                                    AI Tools
-                                </Link>
-                            </>
+                            <img
+                                src={currentUser.avatar}
+                                alt="avatar"
+                                className="rounded-full h-7 w-7 object-cover"
+                            />
                         ) : (
-                            <>
-                                <Link to="/" className="hidden sm:inline text-sm sm:text-base text-gray-700 hover:underline">
-                                    Home
-                                </Link>
-                                <Link to="/pricing" className="hidden sm:inline text-sm sm:text-base text-gray-700 hover:underline">
-                                    Pricing
-                                </Link>
-                                <Link to="/about" className="hidden sm:inline text-sm sm:text-base text-gray-700 hover:underline">
-                                    About
-                                </Link>
-                            </>
+                            <li className="text-xs sm:text-sm md:text-base lg:text-lg sm:text-slate-700 hover:underline">Sign In</li>
                         )}
-                        <Link to="/profile" className="flex items-center">
-                            {currentUser ? (
-                                <img
-                                    src={currentUser.avatar}
-                                    alt="User Avatar"
-                                    className="rounded-full h-8 w-8 object-cover border-2 border-gray-300"
-                                />
-                            ) : (
-                                <span className="text-sm sm:text-base text-gray-700 hover:underline">Sign In</span>
-                            )}
-                        </Link>
-                    </ul>
-                </nav>
+                    </Link>
+                </ul>
             </div>
         </header>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header
